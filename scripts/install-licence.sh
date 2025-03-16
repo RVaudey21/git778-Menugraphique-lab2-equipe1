@@ -2,7 +2,7 @@
 
 
 #Configurer les variables d'environnement
-export IND250_SECURE_SERVER_PORT=9090
+export IND250_SECURE_SERVER_PORT=$1
 
 
 # Mettre à jour le système

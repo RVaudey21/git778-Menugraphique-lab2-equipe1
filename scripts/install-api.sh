@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# usage install-api.sh webserverport cryptoserver cryptoserverport licence DBHost DBPort DBUser DBPass
 # 1. Mise à jour du système
 sudo yum update -y
 
@@ -21,16 +21,16 @@ if [ -z "$JAR_FILE" ]; then
 fi
 
 # 5. Configurer les variables d'environnement et exécuter l'application
-export WEBSERVER_PORT=80
+export WEBSERVER_PORT=$1
 export WEBSERVER_CRYPTOPROTOCOL=http
-export WEBSERVER_CRYPTOSERVER=licence.team1.gti778.ets.bimweb.net
-export WEBSERVER_CRYPTOSERVERPORT=9090
-export WEBSERVER_CRYPTOLICENCE=6d006006b023bb228e8b2c589416bc88:0dbdd229c5daddb38ea798307470e3ef46313a126d4a6d91fb12e1c776b9727db328798b0965b5cba110fba3f46d9b22
+export WEBSERVER_CRYPTOSERVER=$2
+export WEBSERVER_CRYPTOSERVERPORT=$3
+export WEBSERVER_CRYPTOLICENCE=$4
 
-export WEBSERVER_DBHOST=db.team1.gti778.ets.bimweb.net
-export WEBSERVER_DBPORT=3360
-export WEBSERVER_DBUSER=gti778
-export WEBSERVER_DBPASS="gti778psw"  # Remplace par le bon mot de passe
+export WEBSERVER_DBHOST=$5
+export WEBSERVER_DBPORT=$6
+export WEBSERVER_DBUSER=$7
+export WEBSERVER_DBPASS=$8  # Remplace par le bon mot de passe
 
 
 nohup java -jar "$JAR_FILE" &

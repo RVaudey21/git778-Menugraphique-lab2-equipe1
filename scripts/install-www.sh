@@ -1,4 +1,6 @@
 #!/bin/bash
+
+#usage apiendp apiport domainnme
 set -eux  # Arrête l'exécution en cas d'erreur et affiche chaque commande exécutée
 
 # Mettre à jour les paquets du système
@@ -8,7 +10,7 @@ sudo yum update -y
 sudo yum install -y nginx git
 
 # Définir les variables
-DOMAIN_NAME="www.team1.gti778.ets.bimweb.net"
+DOMAIN_NAME=$3
 WEB_ROOT="/var/www/html"
 
 # Supprimer l'ancienne version si elle existe
@@ -36,7 +38,7 @@ sudo chown -R nginx:nginx $WEB_ROOT
 sudo chmod -R 755 $WEB_ROOT
 
 # Modifier config.js pour pointer vers l'API de l'équipe
-sudo sed -i "s|http://localhost:8080|http://api.team1.gti778.ets.bimweb.net|g" $WEB_ROOT/js/config.js
+sudo sed -i "s|http://localhost:8080|http://$1:$2|g" $WEB_ROOT/js/config.js
 
 # Écrire le fichier de configuration NGINX
 sudo tee /etc/nginx/conf.d/menugraphique.conf > /dev/null <<EOF
